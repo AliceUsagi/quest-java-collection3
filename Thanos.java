@@ -2,7 +2,7 @@ import java.util.TreeSet;
 
 public class Thanos {
 
-    public static void main(String[] args) {
+    public static void main(String[] args)  {
 
         TreeSet<Hero> heroes = new TreeSet<>();
         heroes.add(new Hero("Hulk", 49));
@@ -19,11 +19,16 @@ public class Thanos {
         System.out.println("\nOldest hero:");
         System.out.println(oldest == null ? "" : oldest.getName());
 
+        Hero last = heroes.pollLast();
+
+        boolean containLast = heroes.contains(last);
+
         // TODO 2: Show heroes by age (descending)
         System.out.println("\nHeroes by age (descending) :");
-        for (Hero hero : heroes) {
-            System.out.println(hero.getName() + ", " + hero.getAge());
+        for (Hero heros : heroes.descendingSet()) {
+            System.out.println(heros.getName() + ", " + heros.getAge());
         }
+
 
         // TODO 3: Show heroes by age (ascending),from Spider-Man (include) to Iron Man (exclude)
         Hero spiderman = new Hero("Spider-Man", 18);
@@ -32,8 +37,10 @@ public class Thanos {
         heroes.add(ironman);
 
         System.out.println("\nSubset of heroes :");
-        for (Hero hero : heroes) {
+        for (Hero hero : heroes.subSet(spiderman,true, ironman, true)) {
             System.out.println(hero.getName() + ", " + hero.getAge());
         }
+
+        
     }
 }
